@@ -16,10 +16,16 @@ def keygen(message):
 def encrypt(message, key):
     cryptmessage = ''
     for letter in message:
-        i = alphabet.find(letter) + key
-        cryptmessage += alphabet[i * 2]
+        i = (alphabet.find(letter) + key) * 2
+        cryptmessage += alphabet[i]
     return cryptmessage
 
 
 def decrypt(cryptmessage, key):
-    pass
+    message = ''
+    for letter in cryptmessage:
+        i = alphabet.find(letter)
+        if i % 2 != 0: 
+            i += 161
+        message += alphabet[(i // 2) - key]
+    return message
