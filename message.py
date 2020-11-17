@@ -3,7 +3,8 @@ import string
 import random
 
 
-bot = telebot.TeleBot(key)
+key = open('key.txt').read()
+'''bot = telebot.TeleBot(key)
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True, True)
 keyboard1.row('Получить сообщение', 'Отправить сообщение')
 
@@ -22,4 +23,4 @@ def passwordgeneration(message):
     elif message.text.lower() == 'отправить сообщение':
         pass
 
-bot.polling()
+bot.polling()'''
