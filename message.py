@@ -10,17 +10,20 @@ keyboard1.row('Получить сообщение', 'Отправить соо�
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    bot.send_message(message.chat.id, "С помощью этого бота можно отправит анонимное сообщение которое самоуничтожится после прочтения.\
-                                       \nВ ответ на сообщение бот вернёт пароль для получения сообщения",\
-                                        reply_markup = keyboard1)
+    bot.send_message(message.chat.id, "С помощью этого бота можно отправить анонимное сообщение которое будет удалено после прочтения. \
+    \nВ ответ на сообщение бот вернёт пароль для получения сообщения.", reply_markup = keyboard1)
 
 @bot.message_handler(content_types=['text'])
-def passwordgeneration(message):
+def askaction(message):
     if message.text.lower() == 'получить сообщение':
-        bot.send_message(message.chat.id, 'Для получения сообщения необходим пароль')
+        bot.send_message(message.chat.id, 'Для получения сообщения необходим пароль!')
+        return('get')
     elif message.text.lower() == 'отправить сообщение':
-        symbols = string.ascii_letters + string.digits
-        password = ''.join(random.sample(symbols, random.randint(15,40)))
-        bot.send_message(message.chat.id, password)
+        bot.send_message(message.chat.id, 'Отправьте текст')
+        return('send')
+
+#        symbols = string.ascii_letters + string.digits
+#        password = ''.join(random.sample(symbols, random.randint(15,40)))
+#        bot.send_message(message.chat.id, password)
 
 bot.polling()
